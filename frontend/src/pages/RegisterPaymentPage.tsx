@@ -39,8 +39,8 @@ export function RegisterPaymentPage() {
   const fmt = (v: string) => new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(Number(v));
 
   if (success) {
-    return (
-      <div className="max-w-md mx-auto text-center py-xl">
+  return (
+    <div className="max-w-[400px] mx-auto text-center py-xl">
         <span className="material-symbols-outlined text-[48px] text-tertiary" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
         <p className="text-title-md text-on-surface mt-sm">¡Pago registrado!</p>
       </div>
@@ -48,7 +48,7 @@ export function RegisterPaymentPage() {
   }
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-[400px] mx-auto">
       <Link to={`/debts/${formData.debtId || ""}`} className="text-primary text-body-sm hover:underline flex items-center gap-xs mb-sm">
         <span className="material-symbols-outlined text-[16px]">arrow_back</span>
         Volver

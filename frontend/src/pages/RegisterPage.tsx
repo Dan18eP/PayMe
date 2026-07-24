@@ -31,7 +31,7 @@ export function RegisterPage() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full max-w-[400px] mx-auto">
       <div className="bg-surface-container-lowest rounded-xl shadow-modal border border-outline-variant overflow-hidden">
         <div className="bg-primary px-lg py-md flex items-center gap-sm">
           <span className="material-symbols-outlined text-on-primary" style={{ fontVariationSettings: "'FILL' 1" }}>payments</span>

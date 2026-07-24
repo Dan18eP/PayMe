@@ -42,7 +42,7 @@ export function CreateDebtPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-[480px] mx-auto">
       <h2 className="text-title-lg text-on-surface mb-sm">Nueva deuda</h2>
 
       {error && <div className="mb-sm p-sm bg-error-container text-on-error-container rounded text-body-sm">{error}</div>}
