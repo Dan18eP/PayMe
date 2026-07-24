@@ -26,3 +26,6 @@ npm-debug.log*
 
 # Drizzle
 backend/src/db/migrations/meta/
+
+# Design references (not part of the project)
+stitch_*/
