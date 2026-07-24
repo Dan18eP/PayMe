@@ -1,21 +1,33 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { httpClient } from "../services/httpClient";
-import type { DashboardSummary } from "../types";
+import type { DashboardSummary, HistoryEvent } from "../types";
+
+const eventIcons: Record<string, string> = {
+  debt_created: "add_circle",
+  payment_registered: "payments",
+  debt_closed: "check_circle",
+  reminder_sent: "notifications_active",
+  agreement_generated: "description",
+  agreement_signed: "edit_note",
+};
 
 export function DashboardPage() {
   const [summary, setSummary] = useState<DashboardSummary | null>(null);
+  const [recent, setRecent] = useState<HistoryEvent[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    httpClient
-      .get<DashboardSummary>("/dashboard/summary")
-      .then(setSummary)
+    Promise.all([
+      httpClient.get<DashboardSummary>("/dashboard/summary"),
+      httpClient.get<HistoryEvent[]>("/history"),
+    ])
+      .then(([s, h]) => { setSummary(s); setRecent(h.slice(0, 5)); })
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
 
-  const formatCurrency = (val: string) =>
+  const fmt = (val: string) =>
     new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(Number(val));
 
   return (
@@ -94,10 +106,29 @@ export function DashboardPage() {
             <div className="px-md py-sm border-b border-outline-variant">
               <h3 className="text-title-md text-on-surface">Actividad</h3>
             </div>
-            <div className="p-md text-center text-body-sm text-on-surface-variant">
-              <span className="material-symbols-outlined text-[32px] text-outline">timeline</span>
-              <p className="mt-xs">Sin actividad reciente</p>
-            </div>
+            {recent.length === 0 ? (
+              <div className="p-md text-center text-body-sm text-on-surface-variant">
+                <span className="material-symbols-outlined text-[32px] text-outline">timeline</span>
+                <p className="mt-xs">Sin actividad reciente</p>
+              </div>
+            ) : (
+              <div className="divide-y divide-outline-variant">
+                {recent.map((ev) => (
+                  <div key={ev.id} className="px-md py-sm flex items-start gap-sm">
+                    <span className="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">
+                      {eventIcons[ev.eventType] || "info"}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-body-sm text-on-surface">{ev.description}</p>
+                      <p className="text-label-md text-on-surface-variant">{new Date(ev.createdAt).toLocaleString("es-CO")}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            <Link to="/history" className="block px-md py-sm text-center text-primary text-label-md font-semibold hover:underline border-t border-outline-variant">
+              Ver historial completo
+            </Link>
           </div>
         </div>
       </div>
