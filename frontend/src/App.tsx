@@ -13,6 +13,7 @@ import { RegisterPaymentPage } from "./pages/RegisterPaymentPage";
 import { RemindersPage } from "./pages/RemindersPage";
 import { HistoryPage } from "./pages/HistoryPage";
 import { AgreementsPage } from "./pages/AgreementsPage";
+import { SignAgreementPage } from "./pages/SignAgreementPage";
 import { useAuthStore } from "./store/authStore";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -74,6 +75,7 @@ function App() {
           <Route path="/agreements" element={<AgreementsPage />} />
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
         </Route>
+        <Route path="/sign-agreement" element={<SignAgreementPage />} />
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>

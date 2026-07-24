@@ -77,4 +77,16 @@ export const agreementsService = {
     if (!debt) throw new NotFoundError("Deuda");
     return agreementsRepository.findByDebt(debtId);
   },
+
+  async getPublicByToken(token: string) {
+    const agreement = await agreementsRepository.findByToken(token);
+    if (!agreement) throw new NotFoundError("Acuerdo");
+    return {
+      id: agreement.id,
+      content: agreement.content,
+      status: agreement.status,
+      signedAt: agreement.signedAt,
+      tokenExpiresAt: agreement.tokenExpiresAt,
+    };
+  },
 };

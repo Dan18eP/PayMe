@@ -17,5 +17,6 @@ const debtParamsSchema = z.object({
 router.post("/generate", authMiddleware, validate(generateAgreementSchema), agreementsController.generate);
 router.post("/sign", validate(signAgreementSchema), agreementsController.sign);
 router.get("/debt/:debtId", authMiddleware, validate(debtParamsSchema, "params"), agreementsController.getByDebt);
+router.get("/public/:token", agreementsController.getPublicByToken);
 
 export default router;

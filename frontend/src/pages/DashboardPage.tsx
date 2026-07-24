@@ -59,7 +59,7 @@ export function DashboardPage() {
                 <span className="text-label-md text-on-surface-variant">Por cobrar</span>
                 <span className="material-symbols-outlined text-primary text-[16px]">payments</span>
               </div>
-              <p className="text-title-md font-bold text-primary">{summary ? formatCurrency(summary.totalDebt) : "$0"}</p>
+              <p className="text-title-md font-bold text-primary">{summary ? fmt(summary.totalDebt) : "$0"}</p>
             </div>
             <div className="bg-white/80 backdrop-blur-sm border border-outline-variant p-sm rounded-xl shadow-card">
               <div className="flex items-center justify-between mb-0.5">

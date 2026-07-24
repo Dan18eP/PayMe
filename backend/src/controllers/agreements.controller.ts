@@ -30,4 +30,13 @@ export const agreementsController = {
       next(error);
     }
   },
+
+  async getPublicByToken(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await agreementsService.getPublicByToken(req.params.token as string);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
