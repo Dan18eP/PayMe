@@ -197,6 +197,15 @@ export const agreements = pgTable(
   })
 );
 
+export const userSettings = pgTable("user_settings", {
+  userId: uuid("user_id").primaryKey(),
+  whatsappNumber: varchar("whatsapp_number", { length: 20 }),
+  fullName: varchar("full_name", { length: 150 }),
+  reminderTemplate: text("reminder_template"),
+  agreementTemplate: text("agreement_template"),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+});
+
 export const debtorsRelations = relations(debtors, ({ many }) => ({
   debts: many(debts),
   historyEvents: many(historyEvents),

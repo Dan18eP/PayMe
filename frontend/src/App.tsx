@@ -13,6 +13,7 @@ import { RegisterPaymentPage } from "./pages/RegisterPaymentPage";
 import { RemindersPage } from "./pages/RemindersPage";
 import { HistoryPage } from "./pages/HistoryPage";
 import { AgreementsPage } from "./pages/AgreementsPage";
+import { SettingsPage } from "./pages/SettingsPage";
 import { SignAgreementPage } from "./pages/SignAgreementPage";
 import { useAuthStore } from "./store/authStore";
 
@@ -73,6 +74,7 @@ function App() {
           <Route path="/reminders" element={<RemindersPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/agreements" element={<AgreementsPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
         </Route>
         <Route path="/sign-agreement" element={<SignAgreementPage />} />
