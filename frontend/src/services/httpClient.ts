@@ -1,9 +1,7 @@
 const BASE_URL = "/api";
 
-interface RequestConfig {
-  headers?: Record<string, string>;
-  params?: Record<string, string>;
-}
+let isRefreshing = false;
+let refreshPromise: Promise<boolean> | null = null;
 
 class HttpClientError extends Error {
   constructor(
@@ -12,6 +10,26 @@ class HttpClientError extends Error {
     public details?: unknown
   ) {
     super(message);
+  }
+}
+
+async function refreshToken(): Promise<boolean> {
+  const refreshToken = localStorage.getItem("auth_refresh_token");
+  if (!refreshToken) return false;
+
+  try {
+    const res = await fetch(`${BASE_URL}/auth/refresh`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ refreshToken }),
+    });
+    if (!res.ok) return false;
+    const data = await res.json();
+    localStorage.setItem("auth_token", data.access_token);
+    localStorage.setItem("auth_refresh_token", data.refresh_token);
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -38,11 +56,38 @@ async function request<T>(
     });
   }
 
-  const response = await fetch(url.toString(), {
+  let response = await fetch(url.toString(), {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,
   });
+
+  if (response.status === 401 && !path.includes("/auth/")) {
+    if (!isRefreshing) {
+      isRefreshing = true;
+      refreshPromise = refreshToken();
+    }
+
+    const refreshed = await refreshPromise;
+    isRefreshing = false;
+    refreshPromise = null;
+
+    if (refreshed) {
+      const newToken = localStorage.getItem("auth_token");
+      headers["Authorization"] = `Bearer ${newToken}`;
+      response = await fetch(url.toString(), {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : undefined,
+      });
+    } else {
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("auth_refresh_token");
+      localStorage.removeItem("auth_user");
+      window.location.href = "/login";
+      throw new HttpClientError(401, "Sesión expirada");
+    }
+  }
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({
@@ -54,6 +99,11 @@ async function request<T>(
   if (response.status === 204) return undefined as T;
 
   return response.json();
+}
+
+interface RequestConfig {
+  headers?: Record<string, string>;
+  params?: Record<string, string>;
 }
 
 export const httpClient = {

@@ -31,4 +31,18 @@ export const authController = {
       next(error);
     }
   },
+
+  async refresh(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { refreshToken } = req.body;
+      if (!refreshToken) {
+        res.status(400).json({ error: "refreshToken requerido" });
+        return;
+      }
+      const result = await authService.refresh(refreshToken);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  },
 };

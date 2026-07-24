@@ -18,5 +18,6 @@ const loginSchema = z.object({
 router.post("/register", validate(registerSchema), authController.register);
 router.post("/login", validate(loginSchema), authController.login);
 router.post("/logout", authController.logout);
+router.post("/refresh", authController.refresh);
 
 export default router;

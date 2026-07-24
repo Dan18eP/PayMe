@@ -13,7 +13,7 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
+  user: JSON.parse(localStorage.getItem("auth_user") || "null"),
   token: localStorage.getItem("auth_token"),
   isAuthenticated: !!localStorage.getItem("auth_token"),
   isLoading: false,
@@ -33,10 +33,11 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       const result = await httpClient.post<{
         user: { id: string; email: string };
-        session: { access_token: string };
+        session: { access_token: string; refresh_token: string; expires_in: number };
       }>("/auth/login", { email, password });
 
       localStorage.setItem("auth_token", result.session.access_token);
+      localStorage.setItem("auth_refresh_token", result.session.refresh_token);
       localStorage.setItem("auth_user", JSON.stringify(result.user));
       set({
         user: result.user,
@@ -66,6 +67,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       await httpClient.post("/auth/logout");
     } finally {
       localStorage.removeItem("auth_token");
+      localStorage.removeItem("auth_refresh_token");
       localStorage.removeItem("auth_user");
       set({ user: null, token: null, isAuthenticated: false });
     }

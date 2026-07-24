@@ -1,4 +1,6 @@
+import { createClient } from "@supabase/supabase-js";
 import { supabaseAdmin } from "../config/supabaseAuthAdmin";
+import { env } from "../config/env";
 import { AppError } from "../middlewares/errorHandler.middleware";
 
 export const authService = {
@@ -40,5 +42,21 @@ export const authService = {
     if (error) {
       throw new AppError("Error al cerrar sesión", 500);
     }
+  },
+
+  async refresh(refreshToken: string) {
+    const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY, {
+      auth: { persistSession: false },
+    });
+    const { data, error } = await supabase.auth.refreshSession({ refresh_token: refreshToken });
+    if (error || !data.session) {
+      throw new AppError("Sesión expirada. Inicia sesión de nuevo.", 401);
+    }
+    return {
+      access_token: data.session.access_token,
+      refresh_token: data.session.refresh_token,
+      expires_in: data.session.expires_in,
+      user: data.user,
+    };
   },
 };
