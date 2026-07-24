@@ -8,6 +8,7 @@ import { DebtorsPage } from "./pages/DebtorsPage";
 import { DebtorDetailPage } from "./pages/DebtorDetailPage";
 import { DebtsPage } from "./pages/DebtsPage";
 import { CreateDebtPage } from "./pages/CreateDebtPage";
+import { DebtDetailPage } from "./pages/DebtDetailPage";
 import { RegisterPaymentPage } from "./pages/RegisterPaymentPage";
 import { RemindersPage } from "./pages/RemindersPage";
 import { HistoryPage } from "./pages/HistoryPage";
