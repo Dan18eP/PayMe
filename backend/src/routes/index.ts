@@ -6,6 +6,7 @@ import paymentsRoutes from "./payments.routes";
 import remindersRoutes from "./reminders.routes";
 import agreementsRoutes from "./agreements.routes";
 import dashboardRoutes from "./dashboard.routes";
+import historyRoutes from "./history.routes";
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use("/payments", paymentsRoutes);
 router.use("/reminders", remindersRoutes);
 router.use("/agreements", agreementsRoutes);
 router.use("/dashboard", dashboardRoutes);
+router.use("/history", historyRoutes);
 
 export default router;
