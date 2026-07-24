@@ -115,3 +115,21 @@ body {
   display: inline-block;
   line-height: 1;
 }
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--fl-opacity, 0.08);
+  }
+  85% {
+    opacity: var(--fl-opacity, 0.08);
+    transform: translateY(-100vh) rotate(10deg);
+  }
+  100% {
+    transform: translateY(-110vh) rotate(15deg);
+    opacity: 0;
+  }
+}
