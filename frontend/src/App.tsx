@@ -1,7 +1,17 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MainLayout, AuthLayout } from "./layouts/MainLayout";
 import { LoginPage } from "./pages/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage";
 import { DashboardPage } from "./pages/DashboardPage";
+import { DebtorsPage } from "./pages/DebtorsPage";
+import { DebtorDetailPage } from "./pages/DebtorDetailPage";
+import { DebtsPage } from "./pages/DebtsPage";
+import { CreateDebtPage } from "./pages/CreateDebtPage";
+import { RegisterPaymentPage } from "./pages/RegisterPaymentPage";
+import { RemindersPage } from "./pages/RemindersPage";
+import { HistoryPage } from "./pages/HistoryPage";
+import { AgreementsPage } from "./pages/AgreementsPage";
 import { useAuthStore } from "./store/authStore";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -17,6 +27,12 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 }
 
 function App() {
+  const initialize = useAuthStore((s) => s.initialize);
+
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -33,7 +49,7 @@ function App() {
             path="/register"
             element={
               <PublicRoute>
-                <div>Register</div>
+                <RegisterPage />
               </PublicRoute>
             }
           />
@@ -46,6 +62,16 @@ function App() {
           }
         >
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/debtors" element={<DebtorsPage />} />
+          <Route path="/debtors/:id" element={<DebtorDetailPage />} />
+          <Route path="/debts" element={<DebtsPage />} />
+          <Route path="/debts/create" element={<CreateDebtPage />} />
+          <Route path="/debts/:id" element={<DebtDetailPage />} />
+          <Route path="/payments/register" element={<RegisterPaymentPage />} />
+          <Route path="/reminders" element={<RemindersPage />} />
+          <Route path="/history" element={<HistoryPage />} />
+          <Route path="/agreements" element={<AgreementsPage />} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
         </Route>
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Deudores - PayMe!</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .status-chip {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .debtor-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dadadc",
+                        "surface-container-low": "#f3f3f6",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "primary-fixed-dim": "#8fd1d9",
+                        "on-tertiary-fixed": "#002105",
+                        "outline": "#6f797a",
+                        "surface-variant": "#e2e2e5",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#99f899",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-surface": "#1a1c1e",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0d5c63",
+                        "on-tertiary-container": "#7fdc80",
+                        "secondary-fixed": "#d5e3fc",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#abeef6",
+                        "primary": "#004349",
+                        "on-background": "#1a1c1e",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eeeef0",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "inverse-surface": "#2f3133",
+                        "surface-bright": "#f9f9fc",
+                        "background": "#f9f9fc",
+                        "inverse-on-surface": "#f0f0f3",
+                        "secondary": "#515f74",
+                        "surface": "#f9f9fc",
+                        "inverse-primary": "#8fd1d9",
+                        "on-primary-container": "#90d2da",
+                        "secondary-container": "#d5e3fc",
+                        "surface-container-high": "#e8e8ea",
+                        "tertiary-fixed-dim": "#7edb7f",
+                        "tertiary": "#004712",
+                        "surface-tint": "#20686f",
+                        "tertiary-container": "#00611c",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002023",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004f55",
+                        "outline-variant": "#bfc8c9",
+                        "on-secondary-container": "#57657a",
+                        "on-tertiary-fixed-variant": "#005316",
+                        "on-surface-variant": "#3f484a"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "base": "8px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "lg": "24px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "kpi-value": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "kpi-value": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- Sidebar (NavigationDrawer Logic) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full z-[60] flex-col py-lg pr-md bg-surface-bright border-r border-outline-variant w-64">
+<div class="px-md mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">PayMe!</h1>
+<div class="mt-lg flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Usuario PayMe!</p>
+<p class="font-label-md text-on-surface-variant">Plan Premium</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<!-- Active Item: Deudores -->
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container font-semibold rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">Deudores</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-body-md">Deudas</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+<span class="font-body-md">Recordatorios</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md">Historial</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-md">Acuerdos</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Configuración</span>
+</a>
+</nav>
+<div class="px-md pt-md border-t border-outline-variant">
+<p class="font-label-md text-on-surface-variant">v1.0.4</p>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 pb-24 md:pb-0">
+<!-- Top App Bar (Mobile-friendly) -->
+<header class="fixed top-0 left-0 md:left-64 right-0 w-full md:w-auto h-16 bg-surface z-50 flex justify-between items-center px-md border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-sm active:scale-95 transition-transform text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="font-title-lg text-title-lg text-primary">Deudores</h2>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hidden md:flex items-center gap-xs bg-primary text-on-primary px-lg py-sm rounded-full font-label-md shadow-sm active:scale-95 transition-all">
+<span class="material-symbols-outlined">person_add</span>
+                    Nuevo Deudor
+                </button>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="pt-20 px-md md:px-lg max-w-container-max mx-auto">
+<!-- Search and Filters Section -->
+<section class="mt-lg mb-2xl space-y-lg">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-md py-md bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all font-body-md text-on-surface" placeholder="Buscar por nombre o identificación..." type="text"/>
+</div>
+<!-- Tabs/Filters -->
+<div class="flex overflow-x-auto pb-sm gap-sm no-scrollbar">
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-primary text-on-primary font-title-md transition-colors">Todos</button>
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-title-md transition-colors">Activos</button>
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-title-md transition-colors">Con Mora</button>
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-title-md transition-colors">Pagados</button>
+</div>
+</section>
+<!-- Debtors List Grid -->
+<section class="debtor-card-grid">
+<!-- Card 1: Carlos Rodríguez -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm hover:border-primary/30 transition-all flex flex-col justify-between">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a middle-aged man with a friendly expression, wearing professional attire in a modern, brightly lit office setting. The style is clean and corporate with soft teal accents in the background to match the brand identity. High-key lighting highlights his professional demeanor, suggesting trust and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0rZDRMDJ7vlWqIXmciGkbd6Q7D-R-FAiI33EA6TBG0f-3e7Jw2PMoVJ62F3_4P-Iea9X2s0SePn5luceG8Ortd6p5_VRnZlfGb1NbSD7cF7nZBKHMUJjiXy8NBFcLg4STqP0Abzhyp09-mh2HilLH_zFh3auzM0gyINRRY-wSYCR4BoU1I_9ajs5MGPOtFjVefqYmmn7yCgoHq3XAPa0RQvvR6VJyxJkF6Z5lU3g0mz7rvKd2iGrFEhpfQqXpbBN6lFrygOvYZ1w"/>
+</div>
+<div>
+<h3 class="font-title-lg text-on-surface">Carlos Rodríguez</h3>
+<p class="font-label-md text-on-surface-variant">CC 1.023.456.***</p>
+</div>
+</div>
+<span class="status-chip bg-error/10 text-error flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                            Atrasado (15 días)
+                        </span>
+</div>
+<div class="mb-lg">
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Deuda Total</p>
+<p class="font-kpi-value text-kpi-value text-primary">$2.500.000</p>
+</div>
+<div class="flex items-center gap-sm pt-md border-t border-outline-variant">
+<button class="flex-1 bg-surface-container-high text-on-surface-variant py-sm rounded-lg font-title-md hover:bg-surface-container-highest transition-colors active:scale-95">Ver Detalles</button>
+<button class="w-10 h-10 flex items-center justify-center bg-tertiary-container text-on-tertiary-container rounded-lg hover:opacity-80 transition-opacity active:scale-90" title="Recordar por WhatsApp">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+</button>
+</div>
+</div>
+<!-- Card 2: María Paula Gómez -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm hover:border-primary/30 transition-all flex flex-col justify-between">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young professional woman smiling confidently, set against a minimalist architectural background with clean lines and soft daylight. The aesthetic is contemporary and professional, incorporating a corporate color palette of soft grays and deep teal. The lighting is natural and airy, conveying a sense of transparency and financial clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuwLDIIHDN4HkyyMvqW4pFz70sDu_gUT7khYxMniqbTaGwEH3aBUQWtBEC81ozB4wZEdef4wTn41DqmVJavysv1gX1nGDcdaxKZh8rbH3FtgOgzPZHxKVxHBpggYQcrNd-bKv_tgO-sJwqTNpFa0SXRmdrTAM7e-J2zzLAebHWMDiBNmOG1h1FrHRaGGik9pz5ilSzoakgycxCFDgdAP7-8bq8pPqThf3m_XemilmnQKoh3ECOI6Zyez-zeMIDU_UYfw6-ZXhAyls"/>
+</div>
+<div>
+<h3 class="font-title-lg text-on-surface">María Paula Gómez</h3>
+<p class="font-label-md text-on-surface-variant">CC 1.034.987.***</p>
+</div>
+</div>
+<span class="status-chip bg-tertiary-fixed-dim/20 text-tertiary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Al día
+                        </span>
+</div>
+<div class="mb-lg">
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Deuda Total</p>
+<p class="font-kpi-value text-kpi-value text-primary">$1.200.000</p>
+</div>
+<div class="flex items-center gap-sm pt-md border-t border-outline-variant">
+<button class="flex-1 bg-surface-container-high text-on-surface-variant py-sm rounded-lg font-title-md hover:bg-surface-container-highest transition-colors active:scale-95">Ver Detalles</button>
+<button class="w-10 h-10 flex items-center justify-center bg-tertiary-container text-on-tertiary-container rounded-lg hover:opacity-80 transition-opacity active:scale-90" title="Recordar por WhatsApp">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Example Additional (Bento Feel) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm hover:border-primary/30 transition-all flex flex-col justify-between">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<div>
+<h3 class="font-title-lg text-on-surface">Jorge Luis Herrera</h3>
+<p class="font-label-md text-on-surface-variant">NIT 900.234.***</p>
+</div>
+</div>
+<span class="status-chip bg-secondary-container text-on-secondary-container flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">pending</span>
+                            En trámite
+                        </span>
+</div>
+<div class="mb-lg">
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Deuda Total</p>
+<p class="font-kpi-value text-kpi-value text-primary">$8.450.000</p>
+</div>
+<div class="flex items-center gap-sm pt-md border-t border-outline-variant">
+<button class="flex-1 bg-surface-container-high text-on-surface-variant py-sm rounded-lg font-title-md hover:bg-surface-container-highest transition-colors active:scale-95">Ver Detalles</button>
+<button class="w-10 h-10 flex items-center justify-center bg-tertiary-container text-on-tertiary-container rounded-lg hover:opacity-80 transition-opacity active:scale-90" title="Recordar por WhatsApp">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- FAB for Mobile -->
+<button class="md:hidden fixed bottom-24 right-md w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center z-50 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar (Mobile only) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface border-t border-outline-variant shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-md">Deudores</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-md">Deudas</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md">Historial</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="font-label-md">Más</span>
+</a>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.classList.add('scale-95');
+            });
+            el.addEventListener('mouseup', () => {
+                el.classList.remove('scale-95');
+            });
+            el.addEventListener('mouseleave', () => {
+                el.classList.remove('scale-95');
+            });
+        });
+
+        // Filter selection logic
+        const filterBtns = document.querySelectorAll('.flex.overflow-x-auto button');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-on-primary');
+                    b.classList.add('bg-surface-container', 'text-on-surface-variant');
+                });
+                btn.classList.add('bg-primary', 'text-on-primary');
+                btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

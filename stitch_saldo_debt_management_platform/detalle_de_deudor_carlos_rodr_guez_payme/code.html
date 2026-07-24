@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detalle de Deudor - PayMe!</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dadadc",
+                    "surface-container-low": "#f3f3f6",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "primary-fixed-dim": "#8fd1d9",
+                    "on-tertiary-fixed": "#002105",
+                    "outline": "#6f797a",
+                    "surface-variant": "#e2e2e5",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#99f899",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "surface-container-highest": "#e2e2e5",
+                    "on-surface": "#1a1c1e",
+                    "on-error": "#ffffff",
+                    "primary-container": "#0d5c63",
+                    "on-tertiary-container": "#7fdc80",
+                    "secondary-fixed": "#d5e3fc",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#abeef6",
+                    "primary": "#004349",
+                    "on-background": "#1a1c1e",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#eeeef0",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "inverse-surface": "#2f3133",
+                    "surface-bright": "#f9f9fc",
+                    "background": "#f9f9fc",
+                    "inverse-on-surface": "#f0f0f3",
+                    "secondary": "#515f74",
+                    "surface": "#f9f9fc",
+                    "inverse-primary": "#8fd1d9",
+                    "on-primary-container": "#90d2da",
+                    "secondary-container": "#d5e3fc",
+                    "surface-container-high": "#e8e8ea",
+                    "tertiary-fixed-dim": "#7edb7f",
+                    "tertiary": "#004712",
+                    "surface-tint": "#20686f",
+                    "tertiary-container": "#00611c",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002023",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004f55",
+                    "outline-variant": "#bfc8c9",
+                    "on-secondary-container": "#57657a",
+                    "on-tertiary-fixed-variant": "#005316",
+                    "on-surface-variant": "#3f484a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "base": "8px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "2xl": "48px",
+                    "lg": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "kpi-value": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "kpi-value": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafa; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(225, 228, 230, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-md h-16 bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary p-2 active:scale-95 transition-transform" data-icon="arrow_back">arrow_back</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">PayMe!</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant p-2 active:scale-95 transition-transform" data-icon="search">search</button>
+<button class="material-symbols-outlined text-on-surface-variant p-2 active:scale-95 transition-transform" data-icon="notifications">notifications</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-32 px-md md:px-lg max-w-container-max mx-auto">
+<!-- Profile Header Section -->
+<section class="mb-lg flex flex-col md:flex-row items-center gap-md">
+<div class="relative">
+<div class="w-24 h-24 rounded-full border-4 border-surface-container-high overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of Carlos Rodríguez, a 40-year-old businessman with a friendly and trustworthy expression. He is wearing a modern navy blue blazer over a crisp white shirt. The background is a soft-focus corporate office with bright, natural lighting that complements the clean, professional light-mode UI design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvMmSb2k0X_QQemZ8MSWM6ftCA0cBDIF7iAm6eKFDV6ruzKsp7M6k0yy1rZOYJoSo745586nChYxU2jaWmBF2Xwj_lf8Uk4k1v_Y9No2IqCE_eNO9IfLA26TlqJHqSDecrQHPLS4RuGCA8vbUH2TG6FjEHAgNTrtFviHvBDW3y5f_iLCOXtyPuAt4w4vAsfEgqTNHKfoUyeJr0k8E9D059FbOgX3SxaHtHoiGQqdr7fEV_cjqi1c4snlPEh4XWbMjLhMhhhRYHzbc"/>
+</div>
+<div class="absolute bottom-0 right-0 bg-primary text-on-primary p-1 rounded-full border-2 border-surface shadow-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="text-center md:text-left">
+<h2 class="font-headline-lg text-headline-lg text-primary">Carlos Rodríguez</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Cliente Particular • ID: 88291</p>
+<div class="mt-xs flex gap-xs justify-center md:justify-start">
+<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Riesgo Medio</span>
+</div>
+</div>
+<div class="ml-auto hidden md:flex gap-md">
+<button class="flex items-center gap-sm px-md h-10 border border-outline-variant rounded-lg font-label-md text-label-md text-primary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span> Editar Perfil
+                </button>
+<button class="flex items-center gap-sm px-md h-10 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="add_card">add_card</span> Abonar Pago
+                </button>
+</div>
+</section>
+<!-- Bento Grid: Financial Summary -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
+<!-- Total Deuda -->
+<div class="glass-card p-md rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Total Deuda</span>
+<span class="material-symbols-outlined text-primary" data-icon="account_balance">account_balance</span>
+</div>
+<div class="font-kpi-value text-kpi-value text-primary">$5.000.000</div>
+</div>
+<div class="mt-md text-[12px] text-on-surface-variant">
+<span class="text-error font-bold">-12%</span> vs mes anterior
+                </div>
+</div>
+<!-- Total Pagado -->
+<div class="glass-card p-md rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Total Pagado</span>
+<span class="material-symbols-outlined text-tertiary" data-icon="payments">payments</span>
+</div>
+<div class="font-kpi-value text-kpi-value text-tertiary">$2.500.000</div>
+</div>
+<div class="mt-md w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary h-full w-1/2"></div>
+</div>
+</div>
+<!-- Saldo Pendiente -->
+<div class="glass-card p-md rounded-xl shadow-sm border border-outline-variant bg-primary-container/10 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-md text-label-md text-primary uppercase">Saldo Pendiente</span>
+<span class="material-symbols-outlined text-primary" data-icon="pending_actions">pending_actions</span>
+</div>
+<div class="font-kpi-value text-kpi-value text-on-primary-container">$2.500.000</div>
+</div>
+<div class="mt-md text-[12px] text-on-primary-container italic font-medium">
+                    Próximo vencimiento: 15 Oct 2023
+                </div>
+</div>
+</div>
+<!-- Tab Navigation -->
+<nav class="flex border-b border-outline-variant mb-md overflow-x-auto scrollbar-hide">
+<button class="px-md py-sm font-title-md text-title-md border-b-2 border-primary text-primary transition-all whitespace-nowrap" id="tab-deudas" onclick="switchTab('deudas')">Deudas</button>
+<button class="px-md py-sm font-title-md text-title-md text-on-surface-variant hover:text-primary transition-all whitespace-nowrap" id="tab-pagos" onclick="switchTab('pagos')">Pagos</button>
+<button class="px-md py-sm font-title-md text-title-md text-on-surface-variant hover:text-primary transition-all whitespace-nowrap" id="tab-recordatorios" onclick="switchTab('recordatorios')">Recordatorios</button>
+</nav>
+<!-- Active Debts List -->
+<div class="space-y-md" id="content-deudas">
+<!-- Debt Item 1 -->
+<div class="bg-surface border border-outline-variant rounded-xl p-md flex items-center justify-between hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Crédito Automotriz</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Emitida: 12 Ago 2023 • Cuota 4/12</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-title-lg text-title-lg text-primary">$1.200.000</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-tertiary-container/20 text-on-tertiary-container text-[10px] font-bold uppercase">Al Día</span>
+</div>
+</div>
+<!-- Debt Item 2 -->
+<div class="bg-surface border border-outline-variant rounded-xl p-md flex items-center justify-between hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Consumos Tarjeta</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Emitida: 01 Sep 2023 • Pago Único</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-title-lg text-title-lg text-primary">$800.000</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-error-container/20 text-on-error-container text-[10px] font-bold uppercase">Vencido</span>
+</div>
+</div>
+<!-- Debt Item 3 -->
+<div class="bg-surface border border-outline-variant rounded-xl p-md flex items-center justify-between hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="house">house</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Mantenimiento Propiedad</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Emitida: 15 Sep 2023 • Cuota 1/3</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-title-lg text-title-lg text-primary">$500.000</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase">Pendiente</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Buttons -->
+<div class="fixed bottom-24 right-6 flex flex-col gap-sm items-end z-40">
+<!-- Send Reminder (WhatsApp) -->
+<button class="flex items-center gap-sm px-md py-3 bg-[#25D366] text-white rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all font-title-md">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+            Enviar Recordatorio
+        </button>
+<!-- New Debt -->
+<button class="flex items-center gap-sm px-md py-4 bg-primary text-on-primary rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all font-title-md">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+            Nueva Deuda
+        </button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface border-t border-outline-variant shadow-lg md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-md text-label-md">Deudores</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-md text-label-md">Deudas</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md">Historial</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+<span class="font-label-md text-label-md">Más</span>
+</div>
+</nav>
+<script>
+        function switchTab(tab) {
+            const tabs = ['deudas', 'pagos', 'recordatorios'];
+            tabs.forEach(t => {
+                const btn = document.getElementById('tab-' + t);
+                if (t === tab) {
+                    btn.classList.add('border-b-2', 'border-primary', 'text-primary');
+                    btn.classList.remove('text-on-surface-variant');
+                } else {
+                    btn.classList.remove('border-b-2', 'border-primary', 'text-primary');
+                    btn.classList.add('text-on-surface-variant');
+                }
+            });
+            
+            // Logic for content swapping could be added here
+            console.log('Switched to tab:', tab);
+        }
+
+        // Micro-interaction for cards
+        document.querySelectorAll('.bg-surface').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

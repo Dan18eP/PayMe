@@ -1,0 +1,438 @@
+<html class="light" lang="es"><head></head><body class="bg-background text-on-surface min-h-screen pb-24 md:pb-0 md:pl-64">```html
+
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recordatorios - PayMe!</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dadadc",
+                    "surface-container-low": "#f3f3f6",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "primary-fixed-dim": "#8fd1d9",
+                    "on-tertiary-fixed": "#002105",
+                    "outline": "#6f797a",
+                    "surface-variant": "#e2e2e5",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#99f899",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "surface-container-highest": "#e2e2e5",
+                    "on-surface": "#1a1c1e",
+                    "on-error": "#ffffff",
+                    "primary-container": "#0d5c63",
+                    "on-tertiary-container": "#7fdc80",
+                    "secondary-fixed": "#d5e3fc",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#abeef6",
+                    "primary": "#004349",
+                    "on-background": "#1a1c1e",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#eeeef0",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "inverse-surface": "#2f3133",
+                    "surface-bright": "#f9f9fc",
+                    "background": "#f9f9fc",
+                    "inverse-on-surface": "#f0f0f3",
+                    "secondary": "#515f74",
+                    "surface": "#f9f9fc",
+                    "inverse-primary": "#8fd1d9",
+                    "on-primary-container": "#90d2da",
+                    "secondary-container": "#d5e3fc",
+                    "surface-container-high": "#e8e8ea",
+                    "tertiary-fixed-dim": "#7edb7f",
+                    "tertiary": "#004712",
+                    "surface-tint": "#20686f",
+                    "tertiary-container": "#00611c",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002023",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004f55",
+                    "outline-variant": "#bfc8c9",
+                    "on-secondary-container": "#57657a",
+                    "on-tertiary-fixed-variant": "#005316",
+                    "on-surface-variant": "#3f484a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "base": "8px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "2xl": "48px",
+                    "lg": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "kpi-value": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "kpi-value": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .reminder-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reminder-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<!-- Navigation Drawer (Desktop) -->
+<aside class="fixed left-0 top-0 h-full z-[60] flex flex-col py-lg pr-md bg-surface-bright dark:bg-surface-container docked h-full left-0 w-64 hidden md:flex">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">PayMe!</h1>
+<div class="flex items-center mt-lg space-x-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">UD</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Usuario PayMe!</span>
+<span class="text-xs text-on-surface-variant">Plan Premium</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center px-lg py-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full transition-colors group" href="#">
+<span class="material-symbols-outlined mr-md">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center px-lg py-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">group</span>
+<span class="font-body-md text-body-md">Deudores</span>
+</a>
+<a class="flex items-center px-lg py-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Deudas</span>
+</a>
+<a class="flex items-center px-lg py-md bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container font-semibold rounded-r-full" href="#">
+<span class="material-symbols-outlined mr-md" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+<span class="font-body-md text-body-md">Recordatorios</span>
+</a>
+<a class="flex items-center px-lg py-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">history</span>
+<span class="font-body-md text-body-md">Historial</span>
+</a>
+<a class="flex items-center px-lg py-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full transition-colors" href="#">
+<span class="material-symbols-outlined mr-md">description</span>
+<span class="font-body-md text-body-md">Acuerdos</span>
+</a>
+<a class="flex items-center px-lg py-md text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full transition-colors mt-auto" href="#">
+<span class="material-symbols-outlined mr-md">settings</span>
+<span class="font-body-md text-body-md">Configuración</span>
+</a>
+</nav>
+<div class="px-lg mt-md">
+<span class="text-xs text-on-surface-variant opacity-50">v1.0.4</span>
+</div>
+</aside>
+<!-- Top App Bar (Mobile) -->
+<header class="md:hidden fixed top-0 left-0 w-full z-50 flex justify-between items-center px-md h-16 bg-surface dark:bg-surface-container-low shadow-sm border-b border-outline-variant">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary p-xs active:scale-95 transition-transform">menu</span>
+<h1 class="ml-sm font-headline-md text-headline-md font-bold text-primary">PayMe!</h1>
+</div>
+<span class="material-symbols-outlined text-primary p-xs active:scale-95 transition-transform">notifications</span>
+</header>
+<!-- Main Content -->
+<main class="max-w-container-max mx-auto p-md md:p-lg pt-20 md:pt-lg">
+<!-- Header Section -->
+<section class="mb-lg flex flex-col md:flex-row md:items-end md:justify-between gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Recordatorios de Pago</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Gestione las notificaciones y envíe avisos a sus deudores de forma eficiente.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center px-lg py-md bg-surface-container-high text-on-surface-variant rounded-xl font-title-md hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined mr-sm">settings</span>
+                    Configurar Alertas
+                </button>
+</div>
+</section>
+<!-- Metrics Overview (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-lg">
+<div class="bg-error-container text-on-error-container p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md uppercase tracking-wider opacity-80">Vencidos</span>
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="mt-md">
+<span class="font-kpi-value text-kpi-value">$12,450.00</span>
+<p class="text-xs mt-xs">8 pagos requieren atención inmediata</p>
+</div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md uppercase tracking-wider opacity-80">Vencen Mañana</span>
+<span class="material-symbols-outlined">event_busy</span>
+</div>
+<div class="mt-md">
+<span class="font-kpi-value text-kpi-value">$3,200.00</span>
+<p class="text-xs mt-xs">3 recordatorios por enviar</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-lg rounded-xl shadow-sm border border-outline-variant">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Próximos (7 días)</span>
+<span class="material-symbols-outlined text-primary">schedule</span>
+</div>
+<div class="mt-md">
+<span class="font-kpi-value text-kpi-value text-on-surface">$28,900.00</span>
+<p class="text-xs text-on-surface-variant mt-xs">15 pagos programados</p>
+</div>
+</div>
+</div>
+<!-- Reminders List -->
+<div class="space-y-lg">
+<div class="flex items-center justify-between">
+<h3 class="font-title-lg text-title-lg text-on-surface">Lista de Pendientes</h3>
+<div class="flex gap-xs">
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded-lg"><span class="material-symbols-outlined">filter_list</span></button>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded-lg"><span class="material-symbols-outlined">sort</span></button>
+</div>
+</div>
+<!-- Reminder Cards Container -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+<!-- Card 1: Vencido -->
+<div class="reminder-card bg-surface border border-outline-variant rounded-xl p-lg flex flex-col gap-md relative overflow-hidden">
+<div class="absolute top-0 right-0 h-full w-1 bg-error"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a mature businessman in a light grey suit, soft office lighting, clean minimalist background, corporate portrait style, using a professional teal and white color scheme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNA00OR4Apo6TUfrrAZIXCIGUAJ812FvlfpNUpsskry35M4AIOfdJDLzml9EVLSCiwTDzILwq0a63gN5MaIHHbn1gl4XIJPL9bkasJktwzeY02A4Lf69QxWcJ5DXMgVfBi5tt0_EB7HpOkSt6m3i7hW2TeTYwawMWrzjZ6qdCLxiJes6n0cmJye1sChpWydUBC4X96ZTejiG6h7vdknu9cPRMOFUic4qwgnJqCtD2zxC_ZuQpvUK8w9S_wQegFFl57R0PU9bs0vO4"/>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Roberto Gómez</h4>
+<span class="bg-error-container text-on-error-container px-sm py-xs rounded text-[10px] font-bold uppercase tracking-tighter">Vencido</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-kpi-value text-title-lg text-error">$4,500.00</span>
+<p class="text-xs text-on-surface-variant">Venció hace 3 días</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-md rounded-lg border border-outline-variant/50">
+<p class="text-sm text-on-surface-variant italic">
+                            "Hola Roberto, te recordamos que tienes un pago pendiente por $4,500.00 que venció el 12 de Octubre. Por favor, realiza tu pago a la brevedad."
+                        </p>
+</div>
+<div class="flex items-center justify-between mt-xs">
+<div class="flex -space-x-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">mail</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">sms</span>
+</div>
+<button class="flex items-center gap-sm px-lg py-md bg-tertiary-container text-on-tertiary-container font-semibold rounded-lg hover:brightness-110 transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg">chat</span>
+                            Enviar WhatsApp
+                        </button>
+</div>
+</div>
+<!-- Card 2: Vence Mañana -->
+<div class="reminder-card bg-surface border border-outline-variant rounded-xl p-lg flex flex-col gap-md relative overflow-hidden">
+<div class="absolute top-0 right-0 h-full w-1 bg-secondary"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist portrait of a young female professional with glasses, bright daylight from a window, neutral modern interior background, corporate saas style, professional Teal color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVzr3CYiCyhJ_AQb72_dc8z20D_Soce4E6Z6i87qOyurm4A5Bkr1Z7U5oI2_DNViuWHBV6Enw2By9vRC61Y9Fc6L53F4ZWNibztxnR574mH6YoEWBewrqZSCbjioziWQXUH1NNmHU_pGtsA_4iIVi5KuhWb7ABqpm1sgvE44V3qUPcFsbZ-w1cuJR0Ckq5h2hglSxb1CvSBwdcLMjkm34eWbCCR2uhTd4qoLAqJ-30320BmL3oqqpd6b_YHVtXnejt5l8_9r56cEQ"/>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Lucía Mendoza</h4>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded text-[10px] font-bold uppercase tracking-tighter">Vence Mañana</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-kpi-value text-title-lg text-primary">$1,200.00</span>
+<p class="text-xs text-on-surface-variant">16 de Octubre</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-md rounded-lg border border-outline-variant/50">
+<p class="text-sm text-on-surface-variant italic">
+                            "Hola Lucía, te recordamos que mañana vence tu próximo pago por $1,200.00. ¿Podrás realizar la transferencia hoy?"
+                        </p>
+</div>
+<div class="flex items-center justify-between mt-xs">
+<div class="flex gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+<button class="flex items-center gap-sm px-lg py-md bg-tertiary-container text-on-tertiary-container font-semibold rounded-lg hover:brightness-110 transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg">chat</span>
+                            Enviar WhatsApp
+                        </button>
+</div>
+</div>
+<!-- Card 3: Próximo -->
+<div class="reminder-card bg-surface border border-outline-variant rounded-xl p-lg flex flex-col gap-md relative overflow-hidden">
+<div class="absolute top-0 right-0 h-full w-1 bg-outline-variant"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A focused digital art profile picture of a young entrepreneur in a modern office setup, clean white walls, natural bright light, professional branding colors, minimal and corporate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8CAV0Wpeo5tD-WA5HZ3do5ZqGm34piDhzdLGvEdIw00YkmRHpqWDfOL4lPAMI9w6koxXZ09BxXgEvDsFBFZ4JuYsu7teaSrGWrNPLlwYwsp-drNAWbUafw3RBiM9cinULXgaKRDmO3y62NmWFGnXyI1SjezXd1k972IIC_At9WsolKWb_bczCx032X_4Pf6q0kVLWOsGvrW13NC1hbqcJCFHZZ29Ng-8Ksgxs6J8X_o4j71gTEmVi5WPyAjjIss0au47c6X0Ncd4"/>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Carlos Ruiz</h4>
+<span class="bg-surface-container-high text-on-surface-variant px-sm py-xs rounded text-[10px] font-bold uppercase tracking-tighter">Próximo</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-kpi-value text-title-lg text-on-surface">$8,750.00</span>
+<p class="text-xs text-on-surface-variant">Vence en 5 días</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-md rounded-lg border border-outline-variant/50">
+<p class="text-sm text-on-surface-variant italic">
+                            "Hola Carlos, te saludamos de PayMe! para recordarte tu pago de $8,750.00 programado para el 20 de Octubre."
+                        </p>
+</div>
+<div class="flex items-center justify-between mt-xs">
+<button class="text-primary font-semibold text-sm hover:underline">Ver detalles</button>
+<button class="flex items-center gap-sm px-lg py-md bg-tertiary-container text-on-tertiary-container font-semibold rounded-lg hover:brightness-110 transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg">chat</span>
+                            Enviar WhatsApp
+                        </button>
+</div>
+</div>
+<!-- Empty State/New Action Card -->
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-lg flex flex-col items-center justify-center text-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">add_alert</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Nuevo Recordatorio Manual</h4>
+<p class="text-sm text-on-surface-variant">Programe un aviso personalizado para un deudor específico.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- In-app Notification Settings -->
+<section class="mt-2xl bg-surface-container-low rounded-2xl p-lg border border-outline-variant">
+<h3 class="font-title-lg text-title-lg text-on-surface mb-lg">Gestión de Notificaciones</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<div class="flex items-center justify-between p-md bg-white rounded-xl shadow-sm border border-outline-variant/30">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="font-body-md text-body-md">Alertas por Email</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-md bg-white rounded-xl shadow-sm border border-outline-variant/30">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="font-body-md text-body-md">Push (App móvil)</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-md bg-white rounded-xl shadow-sm border border-outline-variant/30">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">forum</span>
+<span class="font-body-md text-body-md">Resumen Semanal</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface dark:bg-surface-container-low shadow-lg border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Deudores</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-md text-label-md">Deudas</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-md text-label-md">Historial</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="font-label-md text-label-md">Más</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for toggles
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const parent = this.closest('div');
+                if (this.checked) {
+                    parent.classList.add('border-primary/50');
+                } else {
+                    parent.classList.remove('border-primary/50');
+                }
+            });
+        });
+
+        // Search/Filter FAB simulation
+        const fab = document.createElement('button');
+        fab.className = 'fixed bottom-24 right-6 md:bottom-12 md:right-12 w-14 h-14 rounded-full bg-primary text-on-primary shadow-xl flex items-center justify-center active:scale-90 transition-transform z-40';
+        fab.innerHTML = '<span class="material-symbols-outlined">add</span>';
+        document.body.appendChild(fab);
+    </script>
+```</body></html>

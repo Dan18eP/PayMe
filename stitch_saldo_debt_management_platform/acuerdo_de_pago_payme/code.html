@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dadadc",
+                        "surface-container-low": "#f3f3f6",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "primary-fixed-dim": "#8fd1d9",
+                        "on-tertiary-fixed": "#002105",
+                        "outline": "#6f797a",
+                        "surface-variant": "#e2e2e5",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#99f899",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-surface": "#1a1c1e",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0d5c63",
+                        "on-tertiary-container": "#7fdc80",
+                        "secondary-fixed": "#d5e3fc",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#abeef6",
+                        "primary": "#004349",
+                        "on-background": "#1a1c1e",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eeeef0",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "inverse-surface": "#2f3133",
+                        "surface-bright": "#f9f9fc",
+                        "background": "#f9f9fc",
+                        "inverse-on-surface": "#f0f0f3",
+                        "secondary": "#515f74",
+                        "surface": "#f9f9fc",
+                        "inverse-primary": "#8fd1d9",
+                        "on-primary-container": "#90d2da",
+                        "secondary-container": "#d5e3fc",
+                        "surface-container-high": "#e8e8ea",
+                        "tertiary-fixed-dim": "#7edb7f",
+                        "tertiary": "#004712",
+                        "surface-tint": "#20686f",
+                        "tertiary-container": "#00611c",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002023",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004f55",
+                        "outline-variant": "#bfc8c9",
+                        "on-secondary-container": "#57657a",
+                        "on-tertiary-fixed-variant": "#005316",
+                        "on-surface-variant": "#3f484a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "base": "8px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "lg": "24px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "kpi-value": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "kpi-value": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .document-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+        @media print {
+            .no-print { display: none; }
+            .print-container { width: 100%; margin: 0; padding: 0; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-bright text-on-surface font-body-md antialiased min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-md h-16 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined p-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 transition-transform text-primary dark:text-primary-fixed">menu</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">PayMe!</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined p-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 transition-transform text-primary dark:text-primary-fixed">notifications</button>
+</div>
+</header>
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full z-[60] flex flex-col py-lg pr-md bg-surface-bright dark:bg-surface-container shadow-xl dark:shadow-none w-64 pt-20">
+<div class="px-md mb-lg flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional, clean studio portrait of a young entrepreneur in a modern office, wearing business casual attire. The lighting is bright and even, reflecting a minimalist and high-end financial SaaS aesthetic. Soft depth of field with a neutral gray background that conveys trust and corporate stability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCHnsoe6Aw9oaRrH9fF9y3bbeuukiugURA2vOJcxrO-pIn77V3DcUqX8MxJnhvt_lRTTF7yyEXHzWwskRGbmsTR4DUCLWMtnRYKgtTv4MsCAuLuDjUuXURXzO3hOgfNvRYz2ZQRx9DYbKerJXv2N2grT1ZycgREtb59i65juiQWUuv8BUwQbktNcmK2NKG7AdPAHgWNuky4k2UB8fTaryJ5ckkyMtqpk1M6EawEGO7ed3bGGMaagXNskuOcvWvNkpy4XRN8UkH2bs"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-primary dark:text-primary-fixed">Usuario PayMe!</p>
+<p class="text-xs text-on-surface-variant">Plan Premium</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Deudores</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Deudas</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container font-semibold rounded-r-full active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-md text-body-md">Acuerdos</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md text-body-md">Historial</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-r-full active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Configuración</span>
+</a>
+</nav>
+<div class="mt-auto px-md pb-md">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest opacity-50">v1.0.4</p>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-64 pt-20 pb-24 px-md md:px-lg min-h-screen">
+<!-- Action Bar -->
+<div class="max-w-4xl mx-auto mb-lg flex flex-wrap justify-between items-center gap-md no-print">
+<nav class="flex items-center gap-xs text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Acuerdos</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="font-semibold text-primary">Detalle de Compromiso</span>
+</nav>
+<div class="flex gap-sm">
+<button class="flex items-center gap-sm px-md py-2 border border-outline-variant rounded-full text-primary font-semibold hover:bg-surface-container-high transition-all active:scale-95" onclick="window.print()">
+<span class="material-symbols-outlined">download</span>
+<span>Descargar PDF</span>
+</button>
+<button class="flex items-center gap-sm px-md py-2 bg-primary text-on-primary rounded-full font-semibold hover:opacity-90 transition-all active:scale-95 shadow-md">
+<span class="material-symbols-outlined">share</span>
+<span>Compartir</span>
+</button>
+</div>
+</div>
+<!-- Agreement Document Container -->
+<div class="max-w-4xl mx-auto bg-white document-shadow rounded-lg overflow-hidden border border-outline-variant relative print-container">
+<!-- Document Header Decorations -->
+<div class="h-2 bg-primary w-full"></div>
+<!-- Content -->
+<div class="p-12 md:p-20 flex flex-col gap-lg">
+<!-- Institutional Header -->
+<div class="flex flex-col items-center text-center gap-sm mb-lg">
+<div class="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-md border border-outline-variant">
+<span class="material-symbols-outlined text-4xl text-primary">verified_user</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-on-surface">COMPROMISO DE PAGO</h2>
+<p class="text-on-surface-variant font-label-md tracking-widest uppercase">Documento de Validez Privada</p>
+<div class="w-24 h-px bg-outline-variant mt-md"></div>
+</div>
+<!-- Main Legal Text -->
+<div class="flex flex-col gap-md text-on-surface leading-relaxed">
+<p class="text-justify font-body-lg text-body-lg">
+                        En la ciudad de <span class="font-bold border-b border-outline-variant pb-px">Ciudad de México</span>, a los <span class="font-bold border-b border-outline-variant pb-px">15 días del mes de Octubre de 2023</span>, se suscribe el presente compromiso de pago.
+                    </p>
+<p class="text-justify font-body-lg text-body-lg">
+                        Yo, <span class="font-bold text-primary">Roberto Daniel Méndez</span>, identificado con documento de identidad número <span class="font-bold">ID-99283477</span>, en adelante el "DEUDOR", manifiesto libre y voluntariamente mi compromiso formal de pagar la suma total de <span class="font-bold text-primary">$45,000.00 MXN</span> (Cuarenta y cinco mil pesos 00/100 M.N.) a favor de <span class="font-bold text-primary">Corporativo Servicios Financieros S.A.</span>, en adelante el "ACREEDOR".
+                    </p>
+<p class="text-justify font-body-lg text-body-lg italic text-on-surface-variant">
+                        El presente acuerdo se rige bajo las condiciones de pago detalladas a continuación, aceptando el deudor las consecuencias legales y financieras en caso de incumplimiento de los plazos estipulados.
+                    </p>
+</div>
+<!-- Terms Table -->
+<div class="mt-lg">
+<h3 class="font-title-lg text-title-lg mb-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+                        Cronograma de Pagos
+                    </h3>
+<div class="border border-outline-variant rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-md py-4 font-label-md text-on-surface-variant">CUOTA</th>
+<th class="px-md py-4 font-label-md text-on-surface-variant">FECHA LÍMITE</th>
+<th class="px-md py-4 font-label-md text-on-surface-variant">CONCEPTO</th>
+<th class="px-md py-4 font-label-md text-on-surface-variant text-right">MONTO</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-md py-4 font-bold">01/03</td>
+<td class="px-md py-4">30 Oct, 2023</td>
+<td class="px-md py-4">Pago Inicial Acuerdo</td>
+<td class="px-md py-4 text-right font-bold">$15,000.00</td>
+</tr>
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-md py-4 font-bold">02/03</td>
+<td class="px-md py-4">30 Nov, 2023</td>
+<td class="px-md py-4">Segunda Cuota Diferida</td>
+<td class="px-md py-4 text-right font-bold">$15,000.00</td>
+</tr>
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-md py-4 font-bold">03/03</td>
+<td class="px-md py-4">30 Dic, 2023</td>
+<td class="px-md py-4">Saldo Final Acuerdo</td>
+<td class="px-md py-4 text-right font-bold">$15,000.00</td>
+</tr>
+</tbody>
+<tfoot class="bg-surface-container-highest border-t border-outline">
+<tr>
+<td class="px-md py-4 font-bold text-on-surface text-right" colspan="3">TOTAL A PAGAR</td>
+<td class="px-md py-4 text-right font-display text-2xl text-primary">$45,000.00</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<!-- Signatures -->
+<div class="mt-2xl grid grid-cols-1 md:grid-cols-2 gap-2xl md:gap-xl">
+<div class="flex flex-col items-center gap-sm">
+<div class="w-full h-32 flex items-end justify-center pb-xs border-b border-on-surface-variant border-dashed">
+<!-- Signature Placeholder -->
+<span class="text-on-surface-variant opacity-30 text-xs italic">Espacio para firma digital o física</span>
+</div>
+<p class="font-bold text-on-surface">Roberto Daniel Méndez</p>
+<p class="font-label-md text-on-surface-variant uppercase tracking-widest">Firma del Deudor</p>
+<p class="text-[10px] text-on-surface-variant">Huella Digital: 992-XXXX-477</p>
+</div>
+<div class="flex flex-col items-center gap-sm">
+<div class="w-full h-32 flex items-center justify-center relative">
+<div class="absolute inset-0 flex items-center justify-center opacity-10">
+<span class="material-symbols-outlined text-8xl">verified</span>
+</div>
+<div class="w-full h-full flex items-end justify-center pb-xs border-b border-on-surface-variant border-dashed">
+<span class="text-primary font-semibold">VALIDADO POR PAYME!</span>
+</div>
+</div>
+<p class="font-bold text-on-surface">Sist. PayMe! S.A.</p>
+<p class="font-label-md text-on-surface-variant uppercase tracking-widest">Firma del Acreedor</p>
+<p class="text-[10px] text-on-surface-variant">Hash: b66e...9a2f</p>
+</div>
+</div>
+<!-- Footer Disclaimer -->
+<div class="mt-2xl pt-lg border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex items-center gap-sm opacity-60">
+<span class="material-symbols-outlined text-sm">security</span>
+<span class="text-xs">Documento encriptado y certificado por PayMe! Ledger</span>
+</div>
+<div class="text-xs text-on-surface-variant font-mono">
+                        ID_ACUERDO: #77291-MX-2023
+                    </div>
+</div>
+</div>
+</div>
+<!-- Help Tooltip (Mobile/Fab Style) -->
+<div class="fixed bottom-24 right-6 md:right-12 no-print">
+<button class="w-14 h-14 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-lg hover:shadow-xl transition-all active:scale-90">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface dark:bg-surface-container-low border-t border-outline-variant dark:border-outline shadow-lg dark:shadow-none h-16">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Deudores</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-4 py-1 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Acuerdos</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">Historial</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="font-label-md text-label-md">Más</span>
+</button>
+</footer>
+<script>
+        // Micro-interaction for sharing
+        document.querySelector('button:has(.material-symbols-outlined:contains("share"))')?.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Compromiso de Pago - PayMe!',
+                    text: 'He generado un compromiso de pago para Roberto Daniel Méndez.',
+                    url: window.location.href,
+                }).catch(console.error);
+            } else {
+                alert('Función de compartir copiada al portapapeles');
+            }
+        });
+
+        // Simple theme toggle logic (not explicitly requested but good for modern UI)
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+</body></html>
