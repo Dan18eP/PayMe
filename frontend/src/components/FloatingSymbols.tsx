@@ -14,7 +14,7 @@ export function FloatingSymbols() {
       const el = document.createElement("span");
       el.textContent = "$";
       const size = 12 + Math.random() * 14;
-      const opacity = 0.04 + Math.random() * 0.05;
+      const opacity = 0.05 + Math.random() * 0.06;
       el.style.cssText = `
         position: absolute;
         left: ${Math.random() * 100}%;
@@ -57,8 +57,8 @@ export function FloatingSymbols() {
     };
 
     frameId = requestAnimationFrame(loop);
-    const interval = setInterval(create, 2200);
-    setTimeout(create, 100);
+    for (let i = 0; i < 8; i++) setTimeout(create, i * 300);
+    const interval = setInterval(create, 1200);
 
     return () => {
       cancelAnimationFrame(frameId);
