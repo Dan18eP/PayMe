@@ -112,17 +112,27 @@ export function AgreementsPage() {
               </p>
             )}
 
-            {agreement.status === "pending" && signUrl && (
-              <a
-                href={`https://wa.me/${selectedDebt?.debtors.phone ? selectedDebt.debtors.phone.replace(/[^\d]/g, "") : ""}?text=${encodeURIComponent(waMessage)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-xs w-full py-1.5 bg-primary text-on-primary rounded-lg text-body-sm"
+            <div className="flex gap-sm">
+              {agreement.status === "pending" && signUrl && (
+                <a
+                  href={`https://wa.me/${selectedDebt?.debtors.phone ? selectedDebt.debtors.phone.replace(/[^\d]/g, "") : ""}?text=${encodeURIComponent(waMessage)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-xs py-1.5 bg-primary text-on-primary rounded-lg text-body-sm"
+                >
+                  <span className="material-symbols-outlined text-[16px]">chat</span>
+                  WhatsApp
+                </a>
+              )}
+              <button
+                onClick={handleGenerate}
+                disabled={generating}
+                className={`${agreement.status === "pending" ? "flex-1" : "w-full"} flex items-center justify-center gap-xs py-1.5 border border-primary text-primary rounded-lg text-body-sm hover:bg-primary-container/10`}
               >
-                <span className="material-symbols-outlined text-[16px]">chat</span>
-                Enviar por WhatsApp
-              </a>
-            )}
+                <span className="material-symbols-outlined text-[16px]">refresh</span>
+                {generating ? "Regenerando..." : "Regenerar"}
+              </button>
+            </div>
           </div>
         )}
 

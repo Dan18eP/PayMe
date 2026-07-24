@@ -27,12 +27,26 @@ export const agreementsService = {
     const token = generateSignatureToken();
     const tokenExpiresAt = getTokenExpiration(48);
 
-    const agreement = await agreementsRepository.create({
-      debtId: data.debtId,
-      content: data.content || defaultContent,
-      signatureToken: token,
-      tokenExpiresAt,
-    });
+    const existing = await agreementsRepository.findByDebt(data.debtId);
+    let agreement;
+    if (existing) {
+      agreement = await agreementsRepository.update(existing.id, {
+        content: data.content || defaultContent,
+        signatureToken: token,
+        tokenExpiresAt,
+        status: "pending",
+        signatureImageUrl: null,
+        signedAt: null,
+        signerIp: null,
+      });
+    } else {
+      agreement = await agreementsRepository.create({
+        debtId: data.debtId,
+        content: data.content || defaultContent,
+        signatureToken: token,
+        tokenExpiresAt,
+      });
+    }
 
     await historyRepository.create({
       userId,
