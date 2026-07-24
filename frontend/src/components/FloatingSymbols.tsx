@@ -7,61 +7,53 @@ export function FloatingSymbols() {
     const container = containerRef.current;
     if (!container) return;
 
-    const active: { el: HTMLSpanElement; speed: number; opacity: number }[] = [];
-    let frameId: number;
+    const active: { el: HTMLSpanElement; y: number; speed: number }[] = [];
 
     const create = () => {
       const el = document.createElement("span");
       el.textContent = "$";
       const size = 12 + Math.random() * 14;
-      const opacity = 0.05 + Math.random() * 0.06;
       el.style.cssText = `
         position: absolute;
         left: ${Math.random() * 100}%;
-        bottom: 0;
+        top: 100%;
         font-size: ${size}px;
         color: #004349;
         pointer-events: none;
-        will-change: transform, opacity;
+        opacity: 0;
       `;
       container.appendChild(el);
-      active.push({ el, speed: 0.3 + Math.random() * 0.5, opacity });
+      active.push({ el, y: 0, speed: 0.3 + Math.random() * 0.5 });
     };
 
-    let lastTime = performance.now();
-
-    const loop = (time: number) => {
-      const dt = (time - lastTime) / 1000;
-      lastTime = time;
-
+    const tick = () => {
       for (let i = active.length - 1; i >= 0; i--) {
         const a = active[i];
-        const current = parseFloat(a.el.style.bottom) || 0;
-        const newBottom = current + a.speed * dt * 60;
-        a.el.style.bottom = `${newBottom}px`;
+        a.y -= a.speed;
+        a.el.style.transform = `translateY(${a.y}px)`;
 
+        const total = -a.y;
         const vh = window.innerHeight;
-        if (newBottom > vh + 50) {
+        if (total < vh * 0.05) {
+          a.el.style.opacity = String((total / (vh * 0.05)) * 0.08);
+        } else if (total > vh * 0.85) {
+          a.el.style.opacity = String(0.08 * (1 - (total - vh * 0.85) / (vh * 0.15)));
+        } else {
+          a.el.style.opacity = "0.08";
+        }
+
+        if (a.y < -(vh + 80)) {
           a.el.remove();
           active.splice(i, 1);
-        } else if (newBottom < vh * 0.1) {
-          a.el.style.opacity = String(a.opacity * (newBottom / (vh * 0.1)));
-        } else if (newBottom > vh * 0.85) {
-          a.el.style.opacity = String(a.opacity * (1 - (newBottom - vh * 0.85) / (vh * 0.15)));
-        } else {
-          a.el.style.opacity = String(a.opacity);
         }
       }
-
-      frameId = requestAnimationFrame(loop);
     };
 
-    frameId = requestAnimationFrame(loop);
+    setInterval(tick, 30);
     for (let i = 0; i < 8; i++) setTimeout(create, i * 300);
     const interval = setInterval(create, 1200);
 
     return () => {
-      cancelAnimationFrame(frameId);
       clearInterval(interval);
       active.forEach((a) => a.el.remove());
     };
