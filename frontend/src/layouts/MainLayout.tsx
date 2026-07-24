@@ -18,7 +18,8 @@ export function MainLayout() {
   const logout = useAuthStore((s) => s.logout);
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col md:flex-row">
+    <div className="min-h-screen bg-surface flex flex-col md:flex-row relative">
+      <FloatingSymbols />
       {/* Sidebar Desktop */}
       <aside className="hidden md:flex fixed left-0 top-0 h-full flex-col py-md bg-surface-bright border-r border-outline-variant w-56 z-[60]">
         <div className="px-md mb-md">

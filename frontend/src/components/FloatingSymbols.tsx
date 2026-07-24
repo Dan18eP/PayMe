@@ -1,52 +1,46 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
-interface Symbol {
+interface Item {
   id: number;
   x: number;
   size: number;
-  duration: number;
+  dur: number;
   delay: number;
-  opacity: number;
-  el: HTMLSpanElement;
 }
 
 export function FloatingSymbols() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const symbolsRef = useRef<Symbol[]>([]);
+  const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const addSymbol = () => {
-      const el = document.createElement("span");
-      el.textContent = "$";
-      const opacity = 0.04 + Math.random() * 0.06;
-      el.style.cssText = `
-        position: absolute;
-        left: ${Math.random() * 100}%;
-        bottom: -5%;
-        font-size: ${14 + Math.random() * 18}px;
-        color: #004349;
-        animation: float-up ${8 + Math.random() * 12}s ease-out ${Math.random() * 3}s forwards;
-      `;
-      el.style.setProperty("--fl-opacity", String(opacity));
-      container.appendChild(el);
-
-      const id = Date.now() + Math.random();
-
-      setTimeout(() => {
-        el.remove();
-        symbolsRef.current = symbolsRef.current.filter((s) => s.id !== id);
-      }, 25000);
-
-      symbolsRef.current.push({ id, x: 0, size: 0, duration: 0, delay: 0, opacity: 0, el });
+    const add = () => {
+      setItems((prev) => {
+        const next = [...prev, { id: Date.now() + Math.random(), x: Math.random() * 100, size: 14 + Math.random() * 18, dur: 8 + Math.random() * 12, delay: Math.random() * 4 }];
+        return next.length > 15 ? next.slice(-15) : next;
+      });
     };
-
-    for (let i = 0; i < 5; i++) setTimeout(addSymbol, i * 600);
-    const interval = setInterval(addSymbol, 2500);
-    return () => { clearInterval(interval); symbolsRef.current.forEach((s) => s.el.remove()); symbolsRef.current = []; };
+    add();
+    const interval = setInterval(add, 2000);
+    return () => clearInterval(interval);
   }, []);
 
-  return <div ref={containerRef} className="fixed inset-0 pointer-events-none overflow-hidden z-0" />;
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+      {items.map((i) => (
+        <span
+          key={i.id}
+          style={{
+            position: "absolute",
+            left: `${i.x}%`,
+            bottom: "-30px",
+            fontSize: `${i.size}px`,
+            color: "#004349",
+            opacity: 0,
+            animation: `float-up ${i.dur}s ease-out ${i.delay}s forwards`,
+          }}
+        >
+          $
+        </span>
+      ))}
+    </div>
+  );
 }
