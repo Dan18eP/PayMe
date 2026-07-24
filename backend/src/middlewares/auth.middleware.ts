@@ -16,18 +16,22 @@ export async function authMiddleware(
   _res: Response,
   next: NextFunction
 ) {
-  const header = req.headers.authorization;
-  if (!header?.startsWith("Bearer ")) {
-    throw new AppError("Token de autenticación requerido", 401);
+  try {
+    const header = req.headers.authorization;
+    if (!header?.startsWith("Bearer ")) {
+      return next(new AppError("Token de autenticación requerido", 401));
+    }
+
+    const token = header.slice(7);
+    const { data, error } = await supabase.auth.getUser(token);
+
+    if (error || !data.user) {
+      return next(new AppError("Token inválido o expirado", 401));
+    }
+
+    req.userId = data.user.id;
+    next();
+  } catch (err) {
+    next(new AppError("Error de autenticación", 500));
   }
-
-  const token = header.slice(7);
-  const { data, error } = await supabase.auth.getUser(token);
-
-  if (error || !data.user) {
-    throw new AppError("Token inválido o expirado", 401);
-  }
-
-  req.userId = data.user.id;
-  next();
 }

@@ -14,7 +14,7 @@ export function validate(schema: ZodSchema, source: "body" | "params" | "query" 
           field: e.path.join("."),
           message: e.message,
         }));
-        throw new AppError("Error de validación", 400, details);
+        return next(new AppError("Error de validación", 400, details));
       }
       next(error);
     }

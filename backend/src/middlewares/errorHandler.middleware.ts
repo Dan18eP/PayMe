@@ -31,7 +31,7 @@ export class InsufficientBalanceError extends AppError {
 }
 
 export function errorHandler(
-  err: Error,
+  err: Error & { code?: string; constraint?: string; detail?: string },
   _req: Request,
   res: Response,
   _next: NextFunction
@@ -40,6 +40,22 @@ export function errorHandler(
     res.status(err.statusCode).json({
       error: err.message,
       details: err.details,
+    });
+    return;
+  }
+
+  if (err.code === "23505") {
+    res.status(409).json({
+      error: "El registro ya existe",
+      details: err.detail || "Valor duplicado",
+    });
+    return;
+  }
+
+  if (err.code === "23503") {
+    res.status(400).json({
+      error: "Operación no válida: el registro está siendo usado",
+      details: err.detail,
     });
     return;
   }
