@@ -61,7 +61,7 @@ export function AgreementsPage() {
     : "";
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-[480px] mx-auto">
       <h2 className="text-title-lg text-on-surface mb-sm">Acuerdos de pago</h2>
 
       <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-card space-y-sm">
