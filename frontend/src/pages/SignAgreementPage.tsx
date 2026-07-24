@@ -40,7 +40,7 @@ export function SignAgreementPage() {
   if (!token) {
     return (
       <div className="min-h-screen bg-surface flex items-center justify-center p-sm">
-        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-card text-center max-w-md">
+        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-card text-center max-w-[400px]">
           <span className="material-symbols-outlined text-[48px] text-error">link_off</span>
           <p className="text-body-md text-on-surface mt-sm">Enlace inválido</p>
         </div>
@@ -59,7 +59,7 @@ export function SignAgreementPage() {
   if (success) {
     return (
       <div className="min-h-screen bg-surface flex items-center justify-center p-sm">
-        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-card text-center max-w-md">
+        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-card text-center max-w-[400px]">
           <span className="material-symbols-outlined text-[48px] text-tertiary" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
           <h2 className="text-title-lg text-on-surface mt-sm">¡Acuerdo firmado!</h2>
           <p className="text-body-sm text-on-surface-variant mt-xs">Gracias, {signerName}. Tu compromiso ha sido registrado.</p>
@@ -71,7 +71,7 @@ export function SignAgreementPage() {
   if (error && !agreement) {
     return (
       <div className="min-h-screen bg-surface flex items-center justify-center p-sm">
-        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-card text-center max-w-md">
+        <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-card text-center max-w-[400px]">
           <span className="material-symbols-outlined text-[48px] text-error">error</span>
           <p className="text-body-md text-on-surface mt-sm">{error}</p>
         </div>
