@@ -19,78 +19,63 @@ export function MainLayout() {
   return (
     <div className="min-h-screen bg-surface flex flex-col md:flex-row">
       {/* Sidebar Desktop */}
-      <aside className="hidden md:flex fixed left-0 top-0 h-full flex-col py-lg pr-md bg-surface-bright border-r border-outline-variant w-64 z-[60]">
-        <div className="px-md mb-xl">
-          <h1 className="text-primary font-bold text-headline-md tracking-tight">PayMe!</h1>
-          <div className="mt-lg flex items-center gap-md">
-            <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
-              <span className="material-symbols-outlined">person</span>
+      <aside className="hidden md:flex fixed left-0 top-0 h-full flex-col py-md bg-surface-bright border-r border-outline-variant w-56 z-[60]">
+        <div className="px-md mb-md">
+          <h1 className="text-title-lg font-bold text-primary">PayMe!</h1>
+          <div className="mt-md flex items-center gap-sm">
+            <div className="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+              <span className="material-symbols-outlined text-[16px]">person</span>
             </div>
-            <div>
-              <p className="font-semibold text-body-md text-on-surface">{user?.email || "Usuario"}</p>
-              <p className="text-label-md text-on-surface-variant">Plan Premium</p>
+            <div className="truncate">
+              <p className="text-body-sm font-semibold text-on-surface truncate">{user?.email || "Usuario"}</p>
+              <p className="text-label-md text-on-surface-variant">Premium</p>
             </div>
           </div>
         </div>
-        <nav className="flex-1 space-y-xs">
+        <nav className="flex-1 space-y-0.5">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `flex items-center gap-md px-md py-sm rounded-r-full transition-colors ${
+                `flex items-center gap-sm px-md py-1.5 rounded-r-full transition-colors text-body-sm ${
                   isActive
                     ? "bg-primary-container text-on-primary-container font-semibold"
                     : "text-on-surface-variant hover:bg-surface-container-high"
                 }`
               }
             >
-              <span className="material-symbols-outlined">{item.icon}</span>
-              <span className="text-body-md">{item.label}</span>
+              <span className="material-symbols-outlined text-[18px]">{item.icon}</span>
+              {item.label}
             </NavLink>
           ))}
         </nav>
-        <div className="px-md pt-md border-t border-outline-variant space-y-sm">
-          <NavLink
-            to="/settings"
-            className="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-r-full transition-colors"
-          >
-            <span className="material-symbols-outlined">settings</span>
-            <span className="text-body-md">Configuración</span>
-          </NavLink>
+        <div className="px-md pt-sm border-t border-outline-variant space-y-0.5">
           <button
             onClick={logout}
-            className="flex items-center gap-md px-md py-sm text-error hover:bg-error-container rounded-r-full transition-colors w-full text-left"
+            className="flex items-center gap-sm px-md py-1.5 text-error hover:bg-error-container rounded-r-full transition-colors w-full text-left text-body-sm"
           >
-            <span className="material-symbols-outlined">logout</span>
-            <span className="text-body-md">Cerrar sesión</span>
+            <span className="material-symbols-outlined text-[18px]">logout</span>
+            Cerrar sesión
           </button>
-          <p className="text-label-md text-on-surface-variant pt-xs">v1.0.4</p>
         </div>
       </aside>
 
-      {/* Main Content Area */}
-      <main className="flex-1 md:ml-64 pb-24 md:pb-0 flex flex-col">
-        {/* Top Bar */}
-        <header className="fixed top-0 left-0 md:left-64 right-0 h-16 bg-surface z-50 flex items-center justify-between px-md border-b border-outline-variant">
-          <div className="flex items-center gap-md">
+      {/* Main */}
+      <main className="flex-1 md:ml-56 pb-16 md:pb-0 flex flex-col">
+        <header className="fixed top-0 left-0 md:left-56 right-0 h-12 bg-surface z-50 flex items-center justify-between px-md border-b border-outline-variant">
+          <div className="flex items-center gap-sm">
             <button
-              className="md:hidden p-sm text-primary active:scale-95 transition-transform"
+              className="md:hidden p-1 text-primary active:scale-95"
               onClick={() => setDrawerOpen(!drawerOpen)}
             >
               <span className="material-symbols-outlined">menu</span>
             </button>
-            <h2 className="text-title-lg text-primary">PayMe!</h2>
-          </div>
-          <div className="flex items-center gap-md">
-            <button className="p-sm hover:bg-surface-container-high rounded-full transition-colors">
-              <span className="material-symbols-outlined">notifications</span>
-            </button>
+            <h2 className="text-title-md text-primary font-bold md:hidden">PayMe!</h2>
           </div>
         </header>
 
-        {/* Page Content */}
-        <div className="pt-20 px-md md:px-lg max-w-container-max w-full mx-auto flex-1">
+        <div className="pt-14 px-sm md:px-md max-w-container-max w-full mx-auto flex-1">
           <Outlet />
         </div>
       </main>
@@ -98,43 +83,40 @@ export function MainLayout() {
       {/* Mobile Drawer */}
       {drawerOpen && (
         <>
-          <div
-            className="md:hidden fixed inset-0 bg-black/30 z-[60]"
-            onClick={() => setDrawerOpen(false)}
-          />
-          <aside className="md:hidden fixed left-0 top-0 h-full flex flex-col py-lg pr-md bg-surface-bright border-r border-outline-variant w-64 z-[70] animate-slide-in">
-            <div className="px-md mb-xl flex justify-between items-center">
-              <h1 className="text-primary font-bold text-headline-md">PayMe!</h1>
+          <div className="md:hidden fixed inset-0 bg-black/30 z-[60]" onClick={() => setDrawerOpen(false)} />
+          <aside className="md:hidden fixed left-0 top-0 h-full flex flex-col py-md bg-surface-bright border-r border-outline-variant w-56 z-[70]">
+            <div className="px-md mb-md flex items-center justify-between">
+              <h1 className="text-title-lg font-bold text-primary">PayMe!</h1>
               <button onClick={() => setDrawerOpen(false)}>
                 <span className="material-symbols-outlined">close</span>
               </button>
             </div>
-            <nav className="flex-1 space-y-xs">
+            <nav className="flex-1 space-y-0.5">
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
                   onClick={() => setDrawerOpen(false)}
                   className={({ isActive }) =>
-                    `flex items-center gap-md px-md py-sm rounded-r-full transition-colors ${
+                    `flex items-center gap-sm px-md py-1.5 rounded-r-full text-body-sm transition-colors ${
                       isActive
                         ? "bg-primary-container text-on-primary-container font-semibold"
                         : "text-on-surface-variant hover:bg-surface-container-high"
                     }`
                   }
                 >
-                  <span className="material-symbols-outlined">{item.icon}</span>
-                  <span className="text-body-md">{item.label}</span>
+                  <span className="material-symbols-outlined text-[18px]">{item.icon}</span>
+                  {item.label}
                 </NavLink>
               ))}
             </nav>
-            <div className="px-md pt-md border-t border-outline-variant">
+            <div className="px-md pt-sm border-t border-outline-variant">
               <button
                 onClick={() => { logout(); setDrawerOpen(false); }}
-                className="flex items-center gap-md px-md py-sm text-error hover:bg-error-container rounded-r-full transition-colors w-full text-left"
+                className="flex items-center gap-sm px-md py-1.5 text-error hover:bg-error-container rounded-r-full transition-colors w-full text-left text-body-sm"
               >
-                <span className="material-symbols-outlined">logout</span>
-                <span className="text-body-md">Cerrar sesión</span>
+                <span className="material-symbols-outlined text-[18px]">logout</span>
+                Cerrar sesión
               </button>
             </div>
           </aside>
@@ -142,21 +124,19 @@ export function MainLayout() {
       )}
 
       {/* Bottom Nav (Mobile) */}
-      <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface border-t border-outline-variant shadow-lg">
+      <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface border-t border-outline-variant shadow-lg">
         {navItems.slice(0, 5).map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
-              `flex flex-col items-center px-4 py-1 active:scale-90 transition-transform ${
-                isActive
-                  ? "bg-secondary-container text-on-secondary-container rounded-full"
-                  : "text-on-surface-variant"
+              `flex flex-col items-center px-2 py-1 active:scale-90 transition-transform ${
+                isActive ? "text-primary" : "text-on-surface-variant"
               }`
             }
           >
-            <span className="material-symbols-outlined">{item.icon}</span>
-            <span className="text-label-md">{item.label}</span>
+            <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
+            <span className="text-[10px]">{item.label}</span>
           </NavLink>
         ))}
       </nav>
@@ -166,7 +146,7 @@ export function MainLayout() {
 
 export function AuthLayout() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-surface p-md">
+    <div className="min-h-screen bg-surface flex items-center justify-center p-sm">
       <Outlet />
     </div>
   );

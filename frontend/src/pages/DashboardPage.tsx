@@ -20,99 +20,85 @@ export function DashboardPage() {
 
   return (
     <div>
-      <div className="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
-        <div>
-          <h2 className="text-headline-lg text-on-surface">Panel Principal</h2>
-          <p className="text-body-md text-on-surface-variant">
-            Resumen de tu cartera hoy, {new Date().toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" })}
-          </p>
-        </div>
+      <div className="flex items-center justify-between mb-md">
+        <h2 className="text-title-lg text-on-surface">Dashboard</h2>
         <Link
           to="/debts/create"
-          className="flex items-center gap-xs px-lg py-md bg-primary text-on-primary rounded-xl text-title-md hover:opacity-90 transition-opacity"
+          className="flex items-center gap-xs px-md py-1.5 bg-primary text-on-primary rounded-lg text-body-sm hover:opacity-90"
         >
-          <span className="material-symbols-outlined">add</span>
-          Nueva Deuda
+          <span className="material-symbols-outlined text-[16px]">add</span>
+          Nueva deuda
         </Link>
       </div>
 
-      {/* KPI Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md mb-xl">
+      {/* KPIs */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-sm mb-md">
         {loading ? (
           Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="bg-white/80 backdrop-blur-sm border border-outline-variant p-md rounded-xl animate-pulse">
-              <div className="h-4 bg-surface-container-high rounded w-24 mb-sm" />
-              <div className="h-8 bg-surface-container-high rounded w-32" />
+            <div key={i} className="bg-white/80 backdrop-blur-sm border border-outline-variant p-sm rounded-xl animate-pulse">
+              <div className="h-3 bg-surface-container-high rounded w-16 mb-xs" />
+              <div className="h-5 bg-surface-container-high rounded w-20" />
             </div>
           ))
         ) : (
           <>
-            <div className="bg-white/80 backdrop-blur-sm border border-outline-variant p-md rounded-xl shadow-card">
-              <div className="flex items-center justify-between mb-sm">
-                <span className="text-on-surface-variant text-label-md uppercase tracking-wider">Total por cobrar</span>
-                <span className="material-symbols-outlined text-primary">payments</span>
+            <div className="bg-white/80 backdrop-blur-sm border border-outline-variant p-sm rounded-xl shadow-card">
+              <div className="flex items-center justify-between mb-0.5">
+                <span className="text-label-md text-on-surface-variant">Por cobrar</span>
+                <span className="material-symbols-outlined text-primary text-[16px]">payments</span>
               </div>
-              <p className="text-[28px] font-bold leading-[34px] tracking-[-0.01em] text-primary">
-                {summary ? formatCurrency(summary.totalDebt) : "$0"}
-              </p>
+              <p className="text-title-md font-bold text-primary">{summary ? formatCurrency(summary.totalDebt) : "$0"}</p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm border border-outline-variant p-md rounded-xl shadow-card">
-              <div className="flex items-center justify-between mb-sm">
-                <span className="text-on-surface-variant text-label-md uppercase tracking-wider">Deudores activos</span>
-                <span className="material-symbols-outlined text-primary">group</span>
+            <div className="bg-white/80 backdrop-blur-sm border border-outline-variant p-sm rounded-xl shadow-card">
+              <div className="flex items-center justify-between mb-0.5">
+                <span className="text-label-md text-on-surface-variant">Deudores</span>
+                <span className="material-symbols-outlined text-primary text-[16px]">group</span>
               </div>
-              <p className="text-[28px] font-bold leading-[34px] text-on-surface">
-                {summary?.activeDebtors ?? 0}
-              </p>
+              <p className="text-title-md font-bold text-on-surface">{summary?.activeDebtors ?? 0}</p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm border border-outline-variant p-md rounded-xl shadow-card">
-              <div className="flex items-center justify-between mb-sm">
-                <span className="text-on-surface-variant text-label-md uppercase tracking-wider">Deudas pendientes</span>
-                <span className="material-symbols-outlined text-tertiary">check_circle</span>
+            <div className="bg-white/80 backdrop-blur-sm border border-outline-variant p-sm rounded-xl shadow-card">
+              <div className="flex items-center justify-between mb-0.5">
+                <span className="text-label-md text-on-surface-variant">Pendientes</span>
+                <span className="material-symbols-outlined text-tertiary text-[16px]">check_circle</span>
               </div>
-              <p className="text-[28px] font-bold leading-[34px] text-on-surface">
-                {summary?.pendingDebts ?? 0}
-              </p>
+              <p className="text-title-md font-bold text-on-surface">{summary?.pendingDebts ?? 0}</p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm border border-outline-variant p-md rounded-xl shadow-card">
-              <div className="flex items-center justify-between mb-sm">
-                <span className="text-on-surface-variant text-label-md uppercase tracking-wider">Próximos vencimientos</span>
-                <span className="material-symbols-outlined text-error">event_busy</span>
+            <div className="bg-white/80 backdrop-blur-sm border border-outline-variant p-sm rounded-xl shadow-card">
+              <div className="flex items-center justify-between mb-0.5">
+                <span className="text-label-md text-on-surface-variant">Vencidas</span>
+                <span className="material-symbols-outlined text-error text-[16px]">event_busy</span>
               </div>
-              <p className="text-[28px] font-bold leading-[34px] text-error">
-                {summary?.overdueDebts ?? 0}
-              </p>
+              <p className="text-title-md font-bold text-error">{summary?.overdueDebts ?? 0}</p>
             </div>
           </>
         )}
       </div>
 
-      {/* Main Content */}
-      <div className="grid grid-cols-12 gap-lg">
-        <div className="col-span-12 lg:col-span-8 flex flex-col gap-lg">
-          <section className="bg-white/80 backdrop-blur-sm border border-outline-variant rounded-xl overflow-hidden shadow-card">
-            <div className="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-bright">
-              <h3 className="text-title-lg text-on-surface">Deudores Críticos</h3>
+      {/* Main content */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-md">
+        <div className="lg:col-span-2">
+          <div className="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-card">
+            <div className="px-md py-sm border-b border-outline-variant flex items-center justify-between">
+              <h3 className="text-title-md text-on-surface">Deudores críticos</h3>
               <Link to="/debtors" className="text-primary text-label-md hover:underline">Ver todos</Link>
             </div>
-            <div className="p-lg text-center text-on-surface-variant text-body-md py-xl">
-              <span className="material-symbols-outlined text-[48px] text-outline">group</span>
-              <p className="mt-sm">Los deudores con mora aparecerán aquí.</p>
-              <Link to="/debtors" className="text-primary font-semibold hover:underline mt-sm inline-block">
-                Ir a Deudores
-              </Link>
+            <div className="p-md text-center text-body-sm text-on-surface-variant">
+              <span className="material-symbols-outlined text-[32px] text-outline">group</span>
+              <p className="mt-xs">Sin deudores en mora</p>
             </div>
-          </section>
+          </div>
         </div>
 
-        <div className="col-span-12 lg:col-span-4 flex flex-col gap-lg">
-          <section className="bg-white/80 backdrop-blur-sm border border-outline-variant rounded-xl p-lg shadow-card">
-            <h3 className="text-title-lg text-on-surface mb-lg">Actividad Reciente</h3>
-            <div className="text-center text-on-surface-variant text-body-md py-xl">
-              <span className="material-symbols-outlined text-[48px] text-outline">timeline</span>
-              <p className="mt-sm">Tu actividad reciente se mostrará aquí.</p>
+        <div>
+          <div className="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-card">
+            <div className="px-md py-sm border-b border-outline-variant">
+              <h3 className="text-title-md text-on-surface">Actividad</h3>
             </div>
-          </section>
+            <div className="p-md text-center text-body-sm text-on-surface-variant">
+              <span className="material-symbols-outlined text-[32px] text-outline">timeline</span>
+              <p className="mt-xs">Sin actividad reciente</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

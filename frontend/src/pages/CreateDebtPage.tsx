@@ -21,91 +21,59 @@ export function CreateDebtPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    httpClient.get<Debtor[]>("/debtors").then(setDebtors).catch(() => {});
-  }, []);
+  useEffect(() => { httpClient.get<Debtor[]>("/debtors").then(setDebtors).catch(() => {}); }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
     try {
-      const body: any = {
-        debtorId: formData.debtorId,
-        totalAmount: formData.totalAmount,
-      };
+      const body: any = { debtorId: formData.debtorId, totalAmount: formData.totalAmount };
       if (formData.dueDate) body.dueDate = formData.dueDate;
       if (formData.frequency !== "one_time") {
-        body.paymentSchedule = {
-          frequency: formData.frequency,
-        };
+        body.paymentSchedule = { frequency: formData.frequency };
         if (formData.installmentAmount) body.paymentSchedule.installmentAmount = formData.installmentAmount;
         if (formData.installmentsCount) body.paymentSchedule.installmentsCount = Number(formData.installmentsCount);
         if (formData.customIntervalDays) body.paymentSchedule.customIntervalDays = Number(formData.customIntervalDays);
       }
       await httpClient.post("/debts", body);
       navigate("/debts");
-    } catch (err: any) {
-      setError(err.message || "Error al crear deuda");
-    } finally {
-      setLoading(false);
-    }
+    } catch (err: any) { setError(err.message || "Error"); } finally { setLoading(false); }
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <h2 className="text-headline-lg text-on-surface mb-lg">Nueva Deuda</h2>
+    <div className="max-w-lg mx-auto">
+      <h2 className="text-title-lg text-on-surface mb-sm">Nueva deuda</h2>
 
-      {error && (
-        <div className="mb-md p-md bg-error-container text-on-error-container rounded-lg text-body-sm">{error}</div>
-      )}
+      {error && <div className="mb-sm p-sm bg-error-container text-on-error-container rounded text-body-sm">{error}</div>}
 
-      <form onSubmit={handleSubmit} className="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-card space-y-md">
+      <form onSubmit={handleSubmit} className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-card space-y-sm">
         <div>
-          <label className="text-label-md text-on-surface-variant">Deudor</label>
-          <select
-            value={formData.debtorId}
-            onChange={(e) => setFormData({ ...formData, debtorId: e.target.value })}
-            className="w-full px-md py-3 bg-surface border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary"
-            required
-          >
-            <option value="">Seleccionar deudor</option>
-            {debtors.map((d) => (
-              <option key={d.id} value={d.id}>{d.fullName}</option>
-            ))}
+          <label className="text-label-md text-on-surface-variant mb-0.5 block">Deudor</label>
+          <select value={formData.debtorId} onChange={(e) => setFormData({ ...formData, debtorId: e.target.value })}
+            className="w-full px-sm py-1.5 bg-surface border border-outline-variant rounded-lg text-body-sm focus:outline-none focus:border-primary" required>
+            <option value="">Seleccionar</option>
+            {debtors.map((d) => <option key={d.id} value={d.id}>{d.fullName}</option>)}
           </select>
         </div>
 
         <div>
-          <label className="text-label-md text-on-surface-variant">Monto total (COP)</label>
-          <input
-            type="number"
-            value={formData.totalAmount}
-            onChange={(e) => setFormData({ ...formData, totalAmount: e.target.value })}
-            className="w-full px-md py-3 bg-surface border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary"
-            placeholder="500000"
-            required
-            min={1}
-          />
+          <label className="text-label-md text-on-surface-variant mb-0.5 block">Monto total (COP)</label>
+          <input type="number" value={formData.totalAmount} onChange={(e) => setFormData({ ...formData, totalAmount: e.target.value })}
+            className="w-full px-sm py-1.5 bg-surface border border-outline-variant rounded-lg text-body-sm focus:outline-none focus:border-primary"
+            placeholder="500000" required min={1} />
         </div>
 
         <div>
-          <label className="text-label-md text-on-surface-variant">Fecha límite (opcional)</label>
-          <input
-            type="date"
-            value={formData.dueDate}
-            onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-            className="w-full px-md py-3 bg-surface border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary"
-          />
+          <label className="text-label-md text-on-surface-variant mb-0.5 block">Fecha límite (opcional)</label>
+          <input type="date" value={formData.dueDate} onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+            className="w-full px-sm py-1.5 bg-surface border border-outline-variant rounded-lg text-body-sm focus:outline-none focus:border-primary" />
         </div>
 
         <div>
-          <label className="text-label-md text-on-surface-variant">Frecuencia de pago</label>
-          <select
-            value={formData.frequency}
-            onChange={(e) => setFormData({ ...formData, frequency: e.target.value })}
-            className="w-full px-md py-3 bg-surface border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary"
-          >
+          <label className="text-label-md text-on-surface-variant mb-0.5 block">Frecuencia</label>
+          <select value={formData.frequency} onChange={(e) => setFormData({ ...formData, frequency: e.target.value })}
+            className="w-full px-sm py-1.5 bg-surface border border-outline-variant rounded-lg text-body-sm focus:outline-none focus:border-primary">
             <option value="one_time">Pago único</option>
             <option value="daily">Diario</option>
             <option value="weekly">Semanal</option>
@@ -118,56 +86,33 @@ export function CreateDebtPage() {
         {formData.frequency !== "one_time" && (
           <>
             <div>
-              <label className="text-label-md text-on-surface-variant">Monto por cuota</label>
-              <input
-                type="number"
-                value={formData.installmentAmount}
-                onChange={(e) => setFormData({ ...formData, installmentAmount: e.target.value })}
-                className="w-full px-md py-3 bg-surface border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary"
-                placeholder="100000"
-              />
+              <label className="text-label-md text-on-surface-variant mb-0.5 block">Monto por cuota</label>
+              <input type="number" value={formData.installmentAmount} onChange={(e) => setFormData({ ...formData, installmentAmount: e.target.value })}
+                className="w-full px-sm py-1.5 bg-surface border border-outline-variant rounded-lg text-body-sm focus:outline-none focus:border-primary" placeholder="100000" />
             </div>
             <div>
-              <label className="text-label-md text-on-surface-variant">Número de cuotas</label>
-              <input
-                type="number"
-                value={formData.installmentsCount}
-                onChange={(e) => setFormData({ ...formData, installmentsCount: e.target.value })}
-                className="w-full px-md py-3 bg-surface border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary"
-                placeholder="12"
-              />
+              <label className="text-label-md text-on-surface-variant mb-0.5 block">N° de cuotas</label>
+              <input type="number" value={formData.installmentsCount} onChange={(e) => setFormData({ ...formData, installmentsCount: e.target.value })}
+                className="w-full px-sm py-1.5 bg-surface border border-outline-variant rounded-lg text-body-sm focus:outline-none focus:border-primary" placeholder="12" />
             </div>
           </>
         )}
 
         {formData.frequency === "custom" && (
           <div>
-            <label className="text-label-md text-on-surface-variant">Días entre cuotas</label>
-            <input
-              type="number"
-              value={formData.customIntervalDays}
-              onChange={(e) => setFormData({ ...formData, customIntervalDays: e.target.value })}
-              className="w-full px-md py-3 bg-surface border border-outline-variant rounded-lg text-body-md focus:outline-none focus:border-primary"
-              placeholder="15"
-            />
+            <label className="text-label-md text-on-surface-variant mb-0.5 block">Días entre cuotas</label>
+            <input type="number" value={formData.customIntervalDays} onChange={(e) => setFormData({ ...formData, customIntervalDays: e.target.value })}
+              className="w-full px-sm py-1.5 bg-surface border border-outline-variant rounded-lg text-body-sm focus:outline-none focus:border-primary" placeholder="15" />
           </div>
         )}
 
-        <div className="flex gap-sm pt-md">
-          <button
-            type="submit"
-            disabled={loading}
-            className="px-lg py-md bg-primary text-on-primary rounded-lg text-title-md hover:opacity-90 disabled:opacity-50"
-          >
-            {loading ? "Creando..." : "Crear Deuda"}
+        <div className="flex gap-sm pt-sm">
+          <button type="submit" disabled={loading}
+            className="px-md py-1.5 bg-primary text-on-primary rounded-lg text-body-sm disabled:opacity-50">
+            {loading ? "Creando..." : "Crear"}
           </button>
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            className="px-lg py-md border border-outline-variant rounded-lg text-title-md text-on-surface-variant hover:bg-surface-container-high"
-          >
-            Cancelar
-          </button>
+          <button type="button" onClick={() => navigate(-1)}
+            className="px-md py-1.5 border border-outline-variant rounded-lg text-body-sm">Cancelar</button>
         </div>
       </form>
     </div>

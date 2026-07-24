@@ -61,16 +61,11 @@
   --color-on-background: #1a1c1e;
 
   /* Text sizes (generate text-* utilities) */
-  --text-display: 48px;
-  --text-display--line-height: 56px;
-  --text-display--font-weight: 700;
-  --text-display--letter-spacing: -0.02em;
-  --text-headline-lg: 32px;
-  --text-headline-lg--line-height: 40px;
+  --text-headline-lg: 28px;
+  --text-headline-lg--line-height: 36px;
   --text-headline-lg--font-weight: 600;
-  --text-headline-lg--letter-spacing: -0.01em;
-  --text-headline-md: 24px;
-  --text-headline-md--line-height: 32px;
+  --text-headline-md: 22px;
+  --text-headline-md--line-height: 28px;
   --text-headline-md--font-weight: 600;
   --text-title-lg: 20px;
   --text-title-lg--line-height: 28px;
