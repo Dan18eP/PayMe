@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
+import { FloatingSymbols } from "../components/FloatingSymbols";
 
 const navItems = [
   { to: "/dashboard", icon: "dashboard", label: "Dashboard" },
@@ -146,7 +147,8 @@ export function MainLayout() {
 
 export function AuthLayout() {
   return (
-    <div className="min-h-screen bg-surface flex items-center justify-center p-sm">
+    <div className="min-h-screen bg-surface flex items-center justify-center p-sm relative">
+      <FloatingSymbols />
       <Outlet />
     </div>
   );
