@@ -53,6 +53,13 @@ export function MainLayout() {
           ))}
         </nav>
         <div className="px-md pt-sm border-t border-outline-variant space-y-0.5">
+          <NavLink
+            to="/settings"
+            className="flex items-center gap-sm px-md py-1.5 text-on-surface-variant hover:bg-surface-container-high rounded-r-full transition-colors text-body-sm"
+          >
+            <span className="material-symbols-outlined text-[18px]">settings</span>
+            Configuración
+          </NavLink>
           <button
             onClick={logout}
             className="flex items-center gap-sm px-md py-1.5 text-error hover:bg-error-container rounded-r-full transition-colors w-full text-left text-body-sm"
